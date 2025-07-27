@@ -1,0 +1,68 @@
+{
+  "id": "erp_system",
+  "name": "ERP管理系统",
+  "type": "project",
+  "children": [
+    {
+      "id": "user_mgmt",
+      "name": "用户管理",
+      "type": "module",
+      "props": {
+        "description": "用户和权限管理模块",
+        "icon": "user",
+        "order": 1,
+        "level": 1,
+        "permissions": ["admin"]
+      },
+      "children": [
+        {
+          "id": "user_basic",
+          "name": "基础用户",
+          "type": "module",
+          "props": {
+            "description": "基础用户管理",
+            "icon": "user-check",
+            "order": 1,
+            "level": 2
+          },
+          "children": [
+            {
+              "id": "user_list_page",
+              "name": "用户列表",
+              "type": "page",
+              "props": {
+                "title": "用户列表",
+                "description": "展示所有用户的列表",
+                "route": "/users",
+                "layout": "default"
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "product_mgmt",
+      "name": "产品管理",
+      "type": "module",
+      "props": {
+        "description": "产品和库存管理",
+        "level": 1
+      },
+      "children": []
+    }
+  ],
+  "props": {
+    "version": "1.0.0",
+    "theme": {
+      "primaryColor": "#1890ff",
+      "mode": "light"
+    },
+    "routing": {
+      "mode": "history",
+      "base": "/"
+    },
+    "globalDatasetIds": ["users", "roles", "products", "inventory_summary"]
+  }
+}

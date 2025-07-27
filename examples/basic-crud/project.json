@@ -1,0 +1,71 @@
+{
+  "id": "basic_crud",
+  "name": "Basic CRUD Example",
+  "description": "A simple example demonstrating basic CRUD operations in a low-code platform.",
+  "version": "1.0.0",
+  "components": [
+    {
+      "id": "user_table",
+      "type": "Table",
+      "datasetId": "users",
+      "config": {
+        "columns": [
+          { "field": "id", "title": "ID", "sortable": true },
+          { "field": "name", "title": "Name", "sortable": true },
+          { "field": "email", "title": "Email", "sortable": true }
+        ]
+      }
+    },
+    {
+      "id": "user_form",
+      "type": "Form",
+      "datasetId": "users",
+      "config": {
+        "fields": [
+          {
+            "field": "name",
+            "label": "Name",
+            "type": "input",
+            "required": true
+          },
+          {
+            "field": "email",
+            "label": "Email",
+            "type": "input",
+            "required": true
+          }
+        ]
+      }
+    }
+  ],
+  "handlers": [
+    {
+      "id": "load_users",
+      "event": "load",
+      "componentId": "user_table",
+      "action": { "type": "refresh" }
+    },
+    {
+      "id": "submit_user",
+      "event": "submit",
+      "componentId": "user_form",
+      "action": { "type": "refresh", "datasetId": "users" }
+    }
+  ],
+  "styles": [
+    {
+      "selector": ".table",
+      "rules": [
+        { "property": "width", "value": "100%" },
+        { "property": "border-collapse", "value": "collapse" }
+      ]
+    },
+    {
+      "selector": ".form",
+      "rules": [
+        { "property": "max-width", "value": "600px" },
+        { "property": "margin", "value": "0 auto" }
+      ]
+    }
+  ]
+}

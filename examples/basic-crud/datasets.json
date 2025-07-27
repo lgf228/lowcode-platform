@@ -1,0 +1,46 @@
+{
+  "datasets": [
+    {
+      "id": "users",
+      "name": "用户",
+      "fields": [
+        { "name": "id", "type": "string", "required": true },
+        { "name": "name", "type": "string", "required": true },
+        { "name": "email", "type": "string", "required": true },
+        { "name": "role", "type": "string", "defaultValue": "user" }
+      ],
+      "source": {
+        "type": "api",
+        "url": "/api/users",
+        "method": "GET"
+      },
+      "state": {
+        "data": [],
+        "loading": false,
+        "error": null,
+        "lastUpdated": null
+      }
+    },
+    {
+      "id": "products",
+      "name": "产品",
+      "fields": [
+        { "name": "id", "type": "string", "required": true },
+        { "name": "name", "type": "string", "required": true },
+        { "name": "price", "type": "number", "required": true },
+        { "name": "category", "type": "string" }
+      ],
+      "source": {
+        "type": "api",
+        "url": "/api/products",
+        "method": "GET"
+      },
+      "state": {
+        "data": [],
+        "loading": false,
+        "error": null,
+        "lastUpdated": null
+      }
+    }
+  ]
+}

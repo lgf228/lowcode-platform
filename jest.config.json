@@ -1,0 +1,14 @@
+{
+  "preset": "ts-jest",
+  "testEnvironment": "jsdom",
+  "transform": {
+    "^.+\\.(ts|tsx)$": "ts-jest"
+  },
+  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json"],
+  "testMatch": ["<rootDir>/tests/**/*.(test|spec).(ts|tsx)"],
+  "setupFilesAfterEnv": ["<rootDir>/tests/setup.ts"],
+  "moduleNameMapper": {
+    "^@/(.*)$": "<rootDir>/src/$1",
+    "\\.(css|less|scss)$": "identity-obj-proxy"
+  }
+}

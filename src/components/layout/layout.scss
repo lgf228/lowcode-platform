@@ -1,0 +1,100 @@
+// ===========================
+// Component Layout Styles
+// ===========================
+
+// Page Component Styles
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--gray-50);
+
+  .page-header {
+    background-color: white;
+    border-bottom: 1px solid var(--gray-200);
+    padding: var(--spacing-lg) var(--spacing-xl);
+    box-shadow: var(--shadow-sm);
+
+    h1 {
+      font-size: var(--text-3xl);
+      font-weight: 700;
+      color: var(--gray-900);
+      margin: 0;
+    }
+  }
+
+  .page-content {
+    flex: 1;
+    padding: var(--spacing-lg);
+  }
+}
+
+// Container Component Styles
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+
+  &.container-fluid {
+    max-width: none;
+  }
+
+  &.container-narrow {
+    max-width: 800px;
+  }
+
+  &.container-wide {
+    max-width: 1600px;
+  }
+}
+
+// Region Component Styles
+.region {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+
+  &.region-horizontal {
+    flex-direction: row;
+
+    > * {
+      flex: 1;
+    }
+  }
+
+  &.region-vertical {
+    flex-direction: column;
+  }
+
+  &.region-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+  }
+}
+
+// Responsive styles
+@media (max-width: 768px) {
+  .page {
+    .page-header {
+      padding: var(--spacing-md) var(--spacing-lg);
+
+      h1 {
+        font-size: var(--text-2xl);
+      }
+    }
+
+    .page-content {
+      padding: var(--spacing-md);
+    }
+  }
+
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .region.region-horizontal {
+    flex-direction: column;
+  }
+}

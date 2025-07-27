@@ -1,0 +1,72 @@
+{
+  "components": [
+    {
+      "id": "Button",
+      "type": "ui",
+      "props": {
+        "label": "Submit",
+        "variant": "primary",
+        "onClick": "handleSubmit"
+      }
+    },
+    {
+      "id": "Input",
+      "type": "ui",
+      "props": {
+        "placeholder": "Enter text",
+        "type": "text",
+        "required": true
+      }
+    },
+    {
+      "id": "Select",
+      "type": "ui",
+      "props": {
+        "options": [
+          { "label": "Option 1", "value": "1" },
+          { "label": "Option 2", "value": "2" }
+        ],
+        "placeholder": "Select an option"
+      }
+    },
+    {
+      "id": "DynamicTable",
+      "type": "dynamic",
+      "props": {
+        "columns": [
+          { "field": "name", "title": "Name", "sortable": true },
+          { "field": "age", "title": "Age", "sortable": true }
+        ],
+        "datasetId": "users"
+      }
+    },
+    {
+      "id": "DynamicForm",
+      "type": "dynamic",
+      "props": {
+        "fields": [
+          {
+            "field": "name",
+            "label": "Name",
+            "type": "input",
+            "required": true
+          },
+          {
+            "field": "email",
+            "label": "Email",
+            "type": "input",
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "DynamicChart",
+      "type": "dynamic",
+      "props": {
+        "type": "bar",
+        "datasetId": "salesData"
+      }
+    }
+  ]
+}

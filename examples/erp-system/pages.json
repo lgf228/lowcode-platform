@@ -1,0 +1,105 @@
+{
+  "pages": [
+    {
+      "id": "user_list_page",
+      "name": "用户列表",
+      "components": [
+        {
+          "id": "filter",
+          "type": "Filter",
+          "datasetId": "users",
+          "config": {
+            "filterFields": ["name", "email"]
+          }
+        },
+        {
+          "id": "table",
+          "type": "Table",
+          "datasetId": "users",
+          "config": {
+            "columns": [
+              { "field": "id", "title": "ID", "sortable": true },
+              { "field": "name", "title": "姓名", "sortable": true },
+              { "field": "email", "title": "邮箱", "sortable": true },
+              { "field": "role", "title": "角色", "sortable": true }
+            ]
+          }
+        }
+      ],
+      "handlers": [
+        {
+          "id": "load_handler",
+          "event": "load",
+          "componentId": "table",
+          "action": { "type": "refresh" }
+        },
+        {
+          "id": "row_click_handler",
+          "event": "rowClick",
+          "componentId": "table",
+          "action": {
+            "type": "navigate",
+            "target": "#/users/detail"
+          }
+        }
+      ]
+    },
+    {
+      "id": "user_form_page",
+      "name": "用户表单",
+      "components": [
+        {
+          "id": "form",
+          "type": "Form",
+          "datasetId": "users",
+          "config": {
+            "fields": [
+              {
+                "field": "name",
+                "label": "姓名",
+                "type": "input",
+                "required": true
+              },
+              {
+                "field": "email",
+                "label": "邮箱",
+                "type": "input",
+                "required": true
+              },
+              {
+                "field": "role",
+                "label": "角色",
+                "type": "select",
+                "required": true,
+                "options": [
+                  { "label": "用户", "value": "user" },
+                  { "label": "管理员", "value": "admin" }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "handlers": [
+        {
+          "id": "submit_handler",
+          "event": "submit",
+          "componentId": "form",
+          "action": {
+            "type": "custom",
+            "code": `
+              fetch('/api/users', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+              }).then(() => {
+                alert('保存成功');
+                history.back();
+              });
+            `
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "pages": [
+    {
+      "id": "user_list_page",
+      "name": "用户列表",
+      "type": "page",
+      "props": {
+        "title": "用户列表",
+        "description": "展示所有用户的列表",
+        "route": "/users",
+        "layout": "default"
+      },
+      "components": [
+        {
+          "id": "user_table",
+          "type": "Table",
+          "datasetId": "users",
+          "config": {
+            "columns": [
+              { "field": "id", "title": "用户ID", "sortable": true },
+              { "field": "name", "title": "用户名", "sortable": true },
+              { "field": "email", "title": "邮箱", "sortable": true },
+              { "field": "role", "title": "角色", "sortable": true }
+            ]
+          }
+        }
+      ],
+      "handlers": [
+        {
+          "event": "load",
+          "componentId": "user_table",
+          "action": { "type": "refresh" }
+        }
+      ]
+    },
+    {
+      "id": "user_form_page",
+      "name": "用户表单",
+      "type": "page",
+      "props": {
+        "title": "用户表单",
+        "description": "添加或编辑用户信息",
+        "route": "/users/edit/:id",
+        "layout": "default"
+      },
+      "components": [
+        {
+          "id": "user_form",
+          "type": "Form",
+          "datasetId": "users",
+          "config": {
+            "fields": [
+              {
+                "field": "name",
+                "label": "用户名",
+                "type": "input",
+                "required": true
+              },
+              {
+                "field": "email",
+                "label": "邮箱",
+                "type": "input",
+                "required": true
+              },
+              {
+                "field": "role",
+                "label": "角色",
+                "type": "select",
+                "options": [
+                  { "label": "用户", "value": "user" },
+                  { "label": "管理员", "value": "admin" }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "handlers": [
+        {
+          "event": "submit",
+          "componentId": "user_form",
+          "action": {
+            "type": "custom",
+            "code": "fetch('/api/users', { method: 'POST', body: JSON.stringify(data) });"
+          }
+        }
+      ]
+    }
+  ]
+}
