@@ -5,13 +5,18 @@
   "main": "src/main.tsx",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "start": "vite",
-    "build": "tsc && vite build",
+    "dev": "vite --host",
+    "start": "vite --host",
+    "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "test": "jest",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "format": "prettier --write ."
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint . --ext .ts,.tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
+    "type-check": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
@@ -33,6 +38,8 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.4",
+    "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.5.2",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.1.0",
     "@types/react": "^19.1.8",
@@ -46,10 +53,27 @@
     "eslint-plugin-react-refresh": "^0.4.14",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^30.0.5",
+    "jest-environment-jsdom": "^30.0.5",
     "prettier": "^3.4.2",
     "sass": "^1.82.0",
     "ts-jest": "^29.4.0",
     "typescript": "^5.8.3",
     "vite": "^7.0.6"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
