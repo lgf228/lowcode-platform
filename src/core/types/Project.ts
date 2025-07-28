@@ -19,10 +19,9 @@ export interface Region {
  * 页面接口 - 继承 BaseEntity
  * Page 是一个特殊的实体，具有页面特有的属性
  */
-export interface Page extends BaseEntity {
+export interface Page extends Component {
   route?: string // 页面路由
   title?: string // 页面标题
-  regions?: Region[] // 页面内的区域
 }
 
 /**
@@ -32,6 +31,7 @@ export interface Page extends BaseEntity {
 export interface Module extends BaseEntity {
   homePageId?: string // 模块首页ID - 点击模块时默认显示的页面
   pages: Page[] // 模块包含的页面 - 用于构建子导航
+  subModules?: Module[] // 子模块 - 用于构建模块导航
 }
 
 /**
