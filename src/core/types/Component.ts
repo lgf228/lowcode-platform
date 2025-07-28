@@ -1,77 +1,67 @@
 // ===========================
-// Component Types - 组件定义和实例类型
+// Component Types - 组件实例类型
 // ===========================
 
 import { BaseEntity } from './Base'
 
-/**
- * 组件定义接口 - 组件类型的定义
- * 表示低代码平台中的组件类型模板
- */
-export interface ComponentDefinition extends BaseEntity {
-  type: string                 // 组件类型（如表格、表单等）
-}
-
 // ===========================
-// 具体组件类型定义
+// 区域和布局相关类型
 // ===========================
 
 /**
- * 表格组件定义
+ * 布局配置
  */
-export interface TableComponentDefinition extends ComponentDefinition {
-  type: 'table'
-  columns?: TableColumn[]      // 默认列配置
-  pagination?: boolean         // 是否支持分页
-  sortable?: boolean          // 是否支持排序
-  filterable?: boolean        // 是否支持筛选
+export interface LayoutConfig {
+  type: 'grid' | 'flex' | 'absolute' | 'flow'
+  props: {
+    columns?: number
+    gap?: number
+    direction?: 'row' | 'column'
+    wrap?: boolean
+    [key: string]: any
+  }
+  responsive?: ResponsiveConfig
 }
 
 /**
- * 表单组件定义
+ * 响应式配置
  */
-export interface FormComponentDefinition extends ComponentDefinition {
-  type: 'form'
-  fields?: FormField[]         // 默认字段配置
-  formLayout?: 'horizontal' | 'vertical' | 'inline' // 布局方式
-  validation?: boolean         // 是否启用验证
+export interface ResponsiveConfig {
+  breakpoints: {
+    mobile?: LayoutConfig
+    tablet?: LayoutConfig
+    desktop?: LayoutConfig
+  }
+}
+
+
+
+/**
+ * 区域接口 - 复合组件容器
+ */
+export interface Region extends BaseEntity {
+  layout: LayoutConfig         // 布局配置
+  components: Component[]      // 子组件列表
 }
 
 /**
- * 按钮组件定义
+ * 组件布局参数
  */
-export interface ButtonComponentDefinition extends ComponentDefinition {
-  type: 'button'
-  variant?: 'primary' | 'secondary' | 'danger' | 'success' // 按钮样式
-  size?: 'small' | 'medium' | 'large' // 按钮大小
+export interface ComponentLayout {
+  gridArea?: string             // Grid 布局中的区域
+  flexOrder?: number            // Flex 布局中的顺序
+  position?: { x: number, y: number }  // 绝对定位
+  size?: { width: number, height: number }  // 尺寸约束
+  responsive?: ResponsiveLayout  // 响应式配置
 }
 
 /**
- * 文本组件定义
+ * 响应式布局配置
  */
-export interface TextComponentDefinition extends ComponentDefinition {
-  type: 'text'
-  textType?: 'title' | 'subtitle' | 'body' | 'caption' // 文本类型
-  editable?: boolean          // 是否可编辑
-}
-
-/**
- * 图表组件定义
- */
-export interface ChartComponentDefinition extends ComponentDefinition {
-  type: 'chart'
-  chartType?: 'line' | 'bar' | 'pie' | 'area' | 'scatter' // 图表类型
-  dataSource?: string         // 默认数据源
-}
-
-/**
- * 容器组件定义
- */
-export interface ContainerComponentDefinition extends ComponentDefinition {
-  type: 'container'
-  containerLayout?: 'flex' | 'grid' | 'absolute' // 布局模式
-  spacing?: number            // 间距
-  background?: string         // 背景样式
+export interface ResponsiveLayout {
+  mobile?: Partial<ComponentLayout>
+  tablet?: Partial<ComponentLayout>
+  desktop?: Partial<ComponentLayout>
 }
 
 // ===========================
@@ -91,50 +81,25 @@ export interface TableColumn {
   align?: 'left' | 'center' | 'right' // 对齐方式
 }
 
-/**
- * 表单字段配置
- */
-export interface FormField {
-  key: string                 // 字段键名
-  label: string               // 字段标签
-  fieldType: 'input' | 'textarea' | 'select' | 'checkbox' | 'radio' | 'date' // 字段类型
-  required?: boolean          // 是否必填
-  placeholder?: string        // 占位符
-  defaultValue?: any          // 默认值
-  options?: FormFieldOption[] // 选项（用于select、radio等）
-  validation?: FieldValidation // 验证规则
-}
 
-/**
- * 表单字段选项
- */
-export interface FormFieldOption {
-  value: string | number      // 选项值
-  label: string               // 选项标签
-  disabled?: boolean          // 是否禁用
-}
 
-/**
- * 字段验证规则
- */
-export interface FieldValidation {
-  pattern?: string            // 正则表达式
-  minLength?: number          // 最小长度
-  maxLength?: number          // 最大长度
-  min?: number                // 最小值
-  max?: number                // 最大值
-  message?: string            // 错误消息
-}
+
+
+
 
 /**
  * 组件接口 - 组件实例（合并配置）
  * Component 表示在页面中实际使用的组件实例，包含所有配置信息
  */
-export interface Component {
+export interface Component extends BaseEntity {
   // 基础属性
-  id: string                   // 组件实例唯一标识（必需）
-  definitionId: string         // 引用的组件定义ID
-  name?: string                // 组件实例名称
+  type: string                 // 组件类型
+
+  // 区域支持 - 复合组件
+  regions?: Region[]           // 包含的区域列表
+
+  // 布局参数 - 在父区域中的位置
+  layout?: ComponentLayout     // 在区域中的布局参数
 
   // 样式配置
   style?: {
@@ -144,15 +109,6 @@ export interface Component {
     padding?: string
     backgroundColor?: string
     color?: string
-  }
-
-  // 布局配置
-  layout?: {
-    position?: 'static' | 'relative' | 'absolute' | 'fixed'
-    display?: 'block' | 'inline' | 'flex' | 'grid'
-    flexDirection?: 'row' | 'column'
-    justifyContent?: 'flex-start' | 'center' | 'flex-end' | 'space-between'
-    alignItems?: 'flex-start' | 'center' | 'flex-end' | 'stretch'
   }
 
   // 数据配置
@@ -180,7 +136,7 @@ export interface Component {
  * 表格组件实例
  */
 export interface TableComponent extends Component {
-  definitionId: string         // 必须引用表格组件定义
+  type: 'table'               // 组件类型
 
   // 表格特定配置
   columns?: TableColumn[]      // 列配置
@@ -192,27 +148,13 @@ export interface TableComponent extends Component {
   rowSelection?: 'single' | 'multiple' | 'none' // 行选择模式
 }
 
-/**
- * 表单组件实例
- */
-export interface FormComponent extends Component {
-  definitionId: string         // 必须引用表单组件定义
 
-  // 表单特定配置
-  fields?: FormField[]         // 字段配置
-  formLayout?: 'horizontal' | 'vertical' | 'inline' // 表单布局方式
-  validation?: boolean         // 是否启用验证
-  submitText?: string         // 提交按钮文本
-  resetText?: string          // 重置按钮文本
-  showSubmitButton?: boolean  // 是否显示提交按钮
-  showResetButton?: boolean   // 是否显示重置按钮
-}
 
 /**
  * 按钮组件实例
  */
 export interface ButtonComponent extends Component {
-  definitionId: string         // 必须引用按钮组件定义
+  type: 'button'              // 组件类型
 
   // 按钮特定配置
   text?: string               // 按钮文本
@@ -228,7 +170,7 @@ export interface ButtonComponent extends Component {
  * 文本组件实例
  */
 export interface TextComponent extends Component {
-  definitionId: string         // 必须引用文本组件定义
+  type: 'text'                // 组件类型
 
   // 文本特定配置
   content?: string            // 文本内容
@@ -243,7 +185,7 @@ export interface TextComponent extends Component {
  * 图表组件实例
  */
 export interface ChartComponent extends Component {
-  definitionId: string         // 必须引用图表组件定义
+  type: 'chart'               // 组件类型
 
   // 图表特定配置
   chartType?: 'line' | 'bar' | 'pie' | 'area' | 'scatter' // 图表类型
@@ -259,7 +201,7 @@ export interface ChartComponent extends Component {
  * 容器组件实例
  */
 export interface ContainerComponent extends Component {
-  definitionId: string         // 必须引用容器组件定义
+  type: 'container'           // 组件类型
 
   // 容器特定配置
   containerLayout?: 'flex' | 'grid' | 'absolute' // 容器布局模式
@@ -269,5 +211,7 @@ export interface ContainerComponent extends Component {
   background?: string         // 背景样式
   border?: string             // 边框样式
   borderRadius?: number       // 圆角
-  children?: Component[]      // 子组件
+
+  // 支持区域的复合组件
+  regions?: Region[]          // 容器内的区域
 }
