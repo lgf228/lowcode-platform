@@ -1,5 +1,6 @@
 // StaticDataManager.ts
-import { ProjectNode, TreeNode, ModuleNode } from '../types/TreeNode'
+// TODO: Update to use new type system from '../types'
+// Temporarily keeping old implementation for reference
 
 export default class StaticDataManager {
   private projectTree: ProjectNode | null = null
