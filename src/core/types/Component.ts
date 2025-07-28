@@ -1,150 +1,170 @@
 // ===========================
-// Component Types
+// Component Types - 组件定义和实例类型
 // ===========================
 
-export interface BaseComponentProps {
-  id?: string
-  className?: string
-  style?: React.CSSProperties
-  children?: React.ReactNode
+import { BaseEntity } from './Base'
+
+/**
+ * 组件定义接口 - 组件类型的定义
+ * 表示低代码平台中的组件类型模板
+ */
+export interface ComponentDefinition extends BaseEntity {
+  type: string                 // 组件类型（如表格、表单等）
 }
 
-export interface ComponentPageProps extends BaseComponentProps {
-  title: string
-  subtitle?: string
-  children: React.ReactNode
+// ===========================
+// 具体组件类型定义
+// ===========================
+
+/**
+ * 表格组件定义
+ */
+export interface TableComponentDefinition extends ComponentDefinition {
+  type: 'table'
+  columns?: TableColumn[]      // 默认列配置
+  pagination?: boolean         // 是否支持分页
+  sortable?: boolean          // 是否支持排序
+  filterable?: boolean        // 是否支持筛选
 }
 
-export interface ContainerProps extends BaseComponentProps {
-  children: React.ReactNode
-  maxWidth?: 'narrow' | 'normal' | 'wide' | 'fluid'
+/**
+ * 表单组件定义
+ */
+export interface FormComponentDefinition extends ComponentDefinition {
+  type: 'form'
+  fields?: FormField[]         // 默认字段配置
+  layout?: 'horizontal' | 'vertical' | 'inline' // 布局方式
+  validation?: boolean         // 是否启用验证
 }
 
-export interface RegionProps extends BaseComponentProps {
-  type?: 'content' | 'sidebar' | 'header' | 'footer' | 'hero' | 'card'
-  layout?: 'vertical' | 'horizontal' | 'grid'
-  spacing?: 'compact' | 'normal' | 'spacious'
-  children: React.ReactNode
+/**
+ * 按钮组件定义
+ */
+export interface ButtonComponentDefinition extends ComponentDefinition {
+  type: 'button'
+  variant?: 'primary' | 'secondary' | 'danger' | 'success' // 按钮样式
+  size?: 'small' | 'medium' | 'large' // 按钮大小
 }
 
-// Form related types
-export interface FormField {
-  field: string
-  label: string
-  type:
-    | 'text'
-    | 'email'
-    | 'number'
-    | 'date'
-    | 'select'
-    | 'textarea'
-    | 'checkbox'
-  required?: boolean
-  placeholder?: string
-  options?: Array<{ value: string; label: string }>
-  validation?: {
-    min?: number
-    max?: number
-    pattern?: string
-    message?: string
-  }
+/**
+ * 文本组件定义
+ */
+export interface TextComponentDefinition extends ComponentDefinition {
+  type: 'text'
+  textType?: 'title' | 'subtitle' | 'body' | 'caption' // 文本类型
+  editable?: boolean          // 是否可编辑
 }
 
-export interface DynamicFormProps extends BaseComponentProps {
-  datasetId: string
-  fields: FormField[]
-  onSubmit?: (data: any) => void
-  onCancel?: () => void
-  submitText?: string
-  cancelText?: string
+/**
+ * 图表组件定义
+ */
+export interface ChartComponentDefinition extends ComponentDefinition {
+  type: 'chart'
+  chartType?: 'line' | 'bar' | 'pie' | 'area' | 'scatter' // 图表类型
+  dataSource?: string         // 默认数据源
 }
 
-// Table related types
+/**
+ * 容器组件定义
+ */
+export interface ContainerComponentDefinition extends ComponentDefinition {
+  type: 'container'
+  layout?: 'flex' | 'grid' | 'absolute' // 布局模式
+  spacing?: number            // 间距
+  background?: string         // 背景样式
+}
+
+// ===========================
+// 组件配置相关类型
+// ===========================
+
+/**
+ * 表格列配置
+ */
 export interface TableColumn {
-  key: string
-  title: string
-  sortable?: boolean
-  filterable?: boolean
-  width?: string | number
-  render?: (value: any, record: any) => React.ReactNode
+  key: string                 // 列键名
+  title: string               // 列标题
+  dataType?: 'string' | 'number' | 'date' | 'boolean' // 数据类型
+  width?: number              // 列宽度
+  sortable?: boolean          // 是否可排序
+  filterable?: boolean        // 是否可筛选
+  align?: 'left' | 'center' | 'right' // 对齐方式
 }
 
-export interface DynamicTableProps extends BaseComponentProps {
-  datasetId: string
-  columns: TableColumn[]
-  data?: any[]
-  loading?: boolean
-  pagination?: {
-    page: number
-    pageSize: number
-    total: number
-    onChange: (page: number, pageSize: number) => void
+/**
+ * 表单字段配置
+ */
+export interface FormField {
+  key: string                 // 字段键名
+  label: string               // 字段标签
+  fieldType: 'input' | 'textarea' | 'select' | 'checkbox' | 'radio' | 'date' // 字段类型
+  required?: boolean          // 是否必填
+  placeholder?: string        // 占位符
+  defaultValue?: any          // 默认值
+  options?: FormFieldOption[] // 选项（用于select、radio等）
+  validation?: FieldValidation // 验证规则
+}
+
+/**
+ * 表单字段选项
+ */
+export interface FormFieldOption {
+  value: string | number      // 选项值
+  label: string               // 选项标签
+  disabled?: boolean          // 是否禁用
+}
+
+/**
+ * 字段验证规则
+ */
+export interface FieldValidation {
+  pattern?: string            // 正则表达式
+  minLength?: number          // 最小长度
+  maxLength?: number          // 最大长度
+  min?: number                // 最小值
+  max?: number                // 最大值
+  message?: string            // 错误消息
+}
+
+/**
+ * 组件配置接口 - 通用组件配置
+ * 每个组件实例的具体配置参数
+ */
+export interface ComponentConfig {
+  style?: {                   // 样式配置
+    width?: string | number
+    height?: string | number
+    margin?: string
+    padding?: string
+    backgroundColor?: string
+    color?: string
   }
-  onRowClick?: (record: any) => void
-  onRowSelect?: (selectedRows: any[]) => void
-}
-
-// Chart related types
-export interface ChartProps extends BaseComponentProps {
-  type: 'line' | 'bar' | 'pie' | 'area' | 'scatter'
-  datasetId: string
-  data?: any[]
-  config?: {
-    xField?: string
-    yField?: string
-    colorField?: string
-    title?: string
-    subtitle?: string
+  layout?: {                  // 布局配置
+    position?: 'static' | 'relative' | 'absolute' | 'fixed'
+    display?: 'block' | 'inline' | 'flex' | 'grid'
+    flexDirection?: 'row' | 'column'
+    justifyContent?: 'flex-start' | 'center' | 'flex-end' | 'space-between'
+    alignItems?: 'flex-start' | 'center' | 'flex-end' | 'stretch'
   }
+  data?: {                    // 数据配置
+    dataSource?: string       // 数据源ID
+    dataBinding?: Record<string, string> // 数据绑定映射
+  }
+  behavior?: {                // 行为配置
+    visible?: boolean         // 是否可见
+    disabled?: boolean        // 是否禁用
+    interactive?: boolean     // 是否可交互
+  }
+  [key: string]: any          // 组件特定的其他配置
 }
 
-// Button types
-export interface ButtonProps extends BaseComponentProps {
-  variant?: 'primary' | 'secondary' | 'danger' | 'outline'
-  size?: 'small' | 'medium' | 'large'
-  disabled?: boolean
-  loading?: boolean
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
-  children: React.ReactNode
-}
-
-// Input types
-export interface InputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
-  label?: string
-  error?: string
-  helperText?: string
-  size?: 'small' | 'medium' | 'large'
-}
-
-// Select types
-export interface SelectOption {
-  value: string
-  label: string
-  disabled?: boolean
-}
-
-export interface SelectProps extends BaseComponentProps {
-  label?: string
-  placeholder?: string
-  options: SelectOption[]
-  value?: string
-  onChange?: (value: string) => void
-  error?: string
-  disabled?: boolean
-  multiple?: boolean
-}
-
-// Layout component types
-export interface LayoutComponentProps {
-  type: 'container' | 'page' | 'region' | 'grid' | 'flex'
-  props: Record<string, any>
-  children?: LayoutComponentProps[]
-}
-
-// Dynamic component types
-export interface DynamicComponentProps {
-  componentType: string
-  props: Record<string, any>
-  children?: DynamicComponentProps[]
+/**
+ * 组件接口 - 组件实例
+ * Component 表示在页面中实际使用的组件实例
+ */
+export interface Component {
+  id: string                   // 组件实例唯一标识（必需）
+  definitionId: string         // 引用的组件定义ID
+  name?: string                // 组件实例名称
+  config?: ComponentConfig     // 组件配置
 }
