@@ -68,11 +68,7 @@ const DynamicForm: React.FC<DynamicFormProps> = ({
             title={field.label}
           >
             <option value="">{field.placeholder || '请选择'}</option>
-            {field.options?.map(option => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
+            {/* 注意：选项数据应该从数据源获取，而不是静态配置 */}
           </select>
         )
       case 'checkbox':

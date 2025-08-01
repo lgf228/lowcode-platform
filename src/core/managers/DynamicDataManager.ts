@@ -42,7 +42,6 @@ class DynamicDataManager {
       this.updateState(datasetId, {
         data,
         loading: false,
-        lastUpdated: new Date().toISOString(),
       })
 
       return data
@@ -87,10 +86,16 @@ class DynamicDataManager {
     if (!computation) return []
 
     const depData = await Promise.all(
-      dependencies.map(depId => this.getData(depId))
+      dependencies.map((depId: string) => this.getData(depId))
     )
 
-    return eval(computation)(depData)
+    // 执行计算函数
+    if (typeof computation === 'function') {
+      return computation(depData)
+    } else {
+      // 如果是字符串形式的函数，需要转换为函数执行
+      return Function('"use strict"; return (' + computation + ')')()(depData)
+    }
   }
 
   updateState(datasetId: string, state: Partial<DataState>): void {
@@ -146,11 +151,19 @@ class DynamicDataManager {
   }
 
   private initializeDataset(dataset: Dataset): void {
-    dataset.state = {
+    const defaultState = {
       data: [],
       loading: false,
       error: undefined,
-      lastUpdated: new Date().toISOString(),
+      dirty: false,
+      selectedRows: {},
+      currentPage: {},
+      pageSize: {},
+      filters: {},
+      sorts: {},
+    }
+    dataset.state = {
+      ...defaultState,
       ...dataset.state,
     }
   }

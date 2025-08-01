@@ -41,7 +41,7 @@ const DynamicTable: React.FC<DynamicTableProps> = ({
       try {
         // 模拟 API 调用
         await new Promise(resolve => setTimeout(resolve, 500))
-        const mockDataForDataset = mockData[datasetId] || []
+        const mockDataForDataset = datasetId ? mockData[datasetId] || [] : []
         setData(mockDataForDataset)
       } catch (error) {
         console.error('Failed to fetch data:', error)
@@ -151,7 +151,7 @@ const DynamicTable: React.FC<DynamicTableProps> = ({
           </div>
         ))}
       </div>
-      {pagination && (
+      {pagination && typeof pagination === 'object' && (
         <div className="table-pagination">
           <div className="pagination-info">
             显示 {(pagination.page - 1) * pagination.pageSize + 1} 到{' '}

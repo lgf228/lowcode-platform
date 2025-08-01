@@ -6,16 +6,6 @@ import { BaseEntity } from './Base'
 import { Component } from './Component'
 
 /**
- * 区域接口 - 简化版本，专注核心功能
- * Region 是一个容器，用于包含和组织子组件
- */
-export interface Region {
-  id: string // 区域唯一标识（必需）
-  name: string // 区域名称
-  children: Component[] // 区域内的子组件
-}
-
-/**
  * 页面接口 - 继承 BaseEntity
  * Page 是一个特殊的实体，具有页面特有的属性
  */
