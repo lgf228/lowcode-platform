@@ -226,7 +226,7 @@ export class ComponentOptimizationFactory implements OptimizedComponentFactory {
         }
 
         // 智能更新判断
-        component.shouldUpdate = function (prevProps: any, nextProps: any): boolean {
+        component.shouldComponentUpdate = function (prevProps: any, nextProps: any): boolean {
             return updateStrategy.shouldComponentUpdate(this, prevProps, nextProps)
         }
     }
