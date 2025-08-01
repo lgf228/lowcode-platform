@@ -16,7 +16,14 @@
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "check-structure": "node tools/scripts/check-structure.cjs",
+    "clean": "npx tsx tools/scripts/cleanup.ts",
+    "clean:legacy": "npx tsx tools/scripts/cleanup.ts --legacy",
+    "clean:all": "npx tsx tools/scripts/cleanup.ts --all",
+    "demo": "npx tsx tools/testing/demos/demo.ts",
+    "demo:smart-update": "npx tsx tools/testing/demos/smart-update-test.ts",
+    "optimization:test": "npx tsx src/core/optimization/integration-test.ts"
   },
   "repository": {
     "type": "git",
