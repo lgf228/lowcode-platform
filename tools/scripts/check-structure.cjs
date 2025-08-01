@@ -28,7 +28,8 @@ const expectedFiles = new Set([
   'SMART_UPDATE_COMPLETE.md',
   'STRUCTURE_REORGANIZATION_COMPLETE.md',
   'PROJECT_STRUCTURE_OPTIMIZATION_COMPLETE.md',
-  
+  'EMPTY_FILES_CLEANUP_COMPLETE.md',
+
   // docs 目录
   'docs/README.md',
   'docs/API.md',
@@ -64,7 +65,6 @@ const expectedFiles = new Set([
   'src/components/dynamic/index.ts',
   'src/core/types/Base.ts',
   'src/core/types/Component.ts',
-  'src/core/types/Component_old.ts',
   'src/core/types/DataModel.ts',
   'src/core/types/Dataset.ts',
   'src/core/types/Project.ts',
@@ -90,8 +90,8 @@ const expectedFiles = new Set([
   // tools 目录
   'tools/scripts/check-structure.js',
   'tools/scripts/check-structure.cjs',
-  'tools/scripts/check-structure-old.cjs',
   'tools/scripts/cleanup.ts',
+  'tools/scripts/cleanup-empty-files.cjs',
   'tools/testing/demos/datagrid-toolbar-demo.ts',
   'tools/testing/demos/demo.ts',
   'tools/testing/demos/smart-update-test.ts',
@@ -115,7 +115,12 @@ const expectedFiles = new Set([
   'public/index.html',
   'public/config/components.json',
   'public/config/datasets.json',
-  'public/config/project.json'
+  'public/config/project.json',
+
+  // backups 目录
+  'backups/README.md',
+  'backups/types/Component_v1.ts',
+  'backups/scripts/check-structure_v1.cjs'
 ])
 
 // 预期的目录结构
@@ -151,7 +156,10 @@ const expectedDirs = new Set([
   'examples/basic-crud',
   'examples/erp-system',
   'public',
-  'public/config'
+  'public/config',
+  'backups',
+  'backups/types',
+  'backups/scripts'
 ])
 
 // 忽略的文件和目录
@@ -174,17 +182,17 @@ function shouldIgnore(filePath) {
 function getAllFiles(dir, baseDir = dir) {
   const files = []
   const items = fs.readdirSync(dir)
-  
+
   for (const item of items) {
     const fullPath = path.join(dir, item)
     const relativePath = path.relative(baseDir, fullPath).replace(/\\/g, '/')
-    
+
     if (shouldIgnore(relativePath)) {
       continue
     }
-    
+
     const stat = fs.statSync(fullPath)
-    
+
     if (stat.isDirectory()) {
       files.push({ type: 'dir', path: relativePath })
       files.push(...getAllFiles(fullPath, baseDir))
@@ -192,7 +200,7 @@ function getAllFiles(dir, baseDir = dir) {
       files.push({ type: 'file', path: relativePath })
     }
   }
-  
+
   return files
 }
 
@@ -200,13 +208,13 @@ function checkStructure(projectRoot) {
   const actualFiles = getAllFiles(projectRoot)
   const actualFilePaths = new Set(actualFiles.filter(f => f.type === 'file').map(f => f.path))
   const actualDirPaths = new Set(actualFiles.filter(f => f.type === 'dir').map(f => f.path))
-  
+
   const results = {
     missing: [],
     unexpected: [],
     correct: []
   }
-  
+
   // 检查预期的文件
   for (const expectedFile of expectedFiles) {
     if (actualFilePaths.has(expectedFile)) {
@@ -215,7 +223,7 @@ function checkStructure(projectRoot) {
       results.missing.push(`❌ ${expectedFile}`)
     }
   }
-  
+
   // 检查预期的目录
   for (const expectedDir of expectedDirs) {
     if (actualDirPaths.has(expectedDir)) {
@@ -224,21 +232,21 @@ function checkStructure(projectRoot) {
       results.missing.push(`❌ ${expectedDir}/`)
     }
   }
-  
+
   // 检查意外的文件
   for (const actualFile of actualFilePaths) {
     if (!expectedFiles.has(actualFile)) {
       results.unexpected.push(`⚠️ ${actualFile} (未预期的文件)`)
     }
   }
-  
+
   // 检查意外的目录
   for (const actualDir of actualDirPaths) {
     if (!expectedDirs.has(actualDir)) {
       results.unexpected.push(`⚠️ ${actualDir}/ (未预期的目录)`)
     }
   }
-  
+
   return results
 }
 

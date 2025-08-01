@@ -9,7 +9,7 @@ import { DataGridToolbarConfig } from '../../../src/core/types/Component'
  * 展示 DataGrid 工具栏的各种配置和功能
  */
 export class DataGridToolbarDemo {
-  
+
   /**
    * 演示基础工具栏配置
    * 包含最常用的功能：添加、刷新、导出、搜索、筛选
@@ -20,7 +20,7 @@ export class DataGridToolbarDemo {
       position: 'top',
       align: 'space-between',
       size: 'medium',
-      
+
       // 基础按钮
       add: {
         text: '新增',
@@ -28,14 +28,14 @@ export class DataGridToolbarDemo {
         type: 'primary',
         tooltip: '添加新记录'
       },
-      
+
       refresh: {
         text: '刷新',
         icon: 'reload',
         type: 'default',
         tooltip: '刷新数据'
       },
-      
+
       export: {
         text: '导出',
         icon: 'download',
@@ -43,7 +43,7 @@ export class DataGridToolbarDemo {
         formats: ['excel', 'csv'],
         includeHeaders: true
       },
-      
+
       // 搜索和筛选
       search: {
         visible: true,
@@ -51,13 +51,13 @@ export class DataGridToolbarDemo {
         clearable: true,
         debounce: 300
       },
-      
+
       filter: {
         visible: true,
         showReset: true,
         autoApply: true
       },
-      
+
       // 信息展示
       info: {
         visible: true,
@@ -67,7 +67,7 @@ export class DataGridToolbarDemo {
       }
     }
   }
-  
+
   /**
    * 演示高级工具栏配置
    * 包含批量操作、表格设置、自定义组件等高级功能
@@ -78,7 +78,7 @@ export class DataGridToolbarDemo {
       position: 'top',
       align: 'space-between',
       size: 'medium',
-      
+
       // 增强的基础按钮
       add: {
         text: '新增用户',
@@ -88,7 +88,7 @@ export class DataGridToolbarDemo {
         modal: true,
         permission: 'user:create'
       },
-      
+
       refresh: {
         text: '刷新',
         icon: 'reload',
@@ -97,7 +97,7 @@ export class DataGridToolbarDemo {
         auto: true,
         interval: 60 // 60秒自动刷新
       },
-      
+
       export: {
         text: '导出',
         icon: 'download',
@@ -108,7 +108,7 @@ export class DataGridToolbarDemo {
         includeHeaders: true,
         selectedOnly: false
       },
-      
+
       // 增强搜索
       search: {
         visible: true,
@@ -121,7 +121,7 @@ export class DataGridToolbarDemo {
         searchFields: ['name', 'email', 'department'],
         fuzzySearch: true
       },
-      
+
       // 增强筛选
       filter: {
         visible: true,
@@ -136,7 +136,7 @@ export class DataGridToolbarDemo {
           { key: 'role', label: '管理员', value: 'admin', icon: 'crown' }
         ]
       },
-      
+
       // 批量操作
       batchActions: {
         visible: true,
@@ -178,7 +178,7 @@ export class DataGridToolbarDemo {
           }
         ]
       },
-      
+
       // 表格设置
       settings: {
         visible: true,
@@ -195,7 +195,7 @@ export class DataGridToolbarDemo {
           fullscreen: true
         }
       },
-      
+
       // 信息展示
       info: {
         visible: true,
@@ -207,7 +207,7 @@ export class DataGridToolbarDemo {
         selectedText: '已选择 {selected} 个',
         filteredText: '筛选后 {filtered} 个'
       },
-      
+
       // 自定义工具栏项目
       custom: [
         {
@@ -255,7 +255,7 @@ export class DataGridToolbarDemo {
           action: 'handleAdvancedOperations'
         }
       ],
-      
+
       // 样式配置
       style: {
         backgroundColor: '#fafafa',
@@ -263,7 +263,7 @@ export class DataGridToolbarDemo {
         padding: '12px 16px',
         borderRadius: '6px 6px 0 0'
       },
-      
+
       // 响应式配置
       responsive: {
         breakpoints: {
@@ -278,7 +278,7 @@ export class DataGridToolbarDemo {
       }
     }
   }
-  
+
   /**
    * 演示移动端优化的工具栏配置
    * 适用于小屏幕设备，功能精简、界面紧凑
@@ -289,7 +289,7 @@ export class DataGridToolbarDemo {
       position: 'top',
       align: 'center',
       size: 'small',
-      
+
       // 精简的按钮配置
       add: {
         icon: 'plus',
@@ -297,14 +297,14 @@ export class DataGridToolbarDemo {
         size: 'small',
         tooltip: '新增'
       },
-      
+
       refresh: {
         icon: 'reload',
         type: 'default',
         size: 'small',
         tooltip: '刷新'
       },
-      
+
       export: {
         icon: 'download',
         type: 'default',
@@ -312,7 +312,7 @@ export class DataGridToolbarDemo {
         tooltip: '导出',
         formats: ['excel', 'csv']
       },
-      
+
       // 简化搜索
       search: {
         visible: true,
@@ -321,7 +321,7 @@ export class DataGridToolbarDemo {
         size: 'small',
         clearable: true
       },
-      
+
       // 精简设置
       settings: {
         visible: true,
@@ -332,7 +332,7 @@ export class DataGridToolbarDemo {
           density: true
         }
       },
-      
+
       // 基础信息
       info: {
         visible: true,
@@ -340,7 +340,7 @@ export class DataGridToolbarDemo {
         showTotal: true,
         totalText: '{total} 条'
       },
-      
+
       // 响应式优化
       responsive: {
         breakpoints: {
@@ -352,7 +352,7 @@ export class DataGridToolbarDemo {
       }
     }
   }
-  
+
   /**
    * 演示只读模式的工具栏配置
    * 适用于数据展示场景，不包含编辑功能
@@ -363,7 +363,7 @@ export class DataGridToolbarDemo {
       position: 'top',
       align: 'space-between',
       size: 'medium',
-      
+
       // 只保留查看相关功能
       refresh: {
         text: '刷新',
@@ -371,7 +371,7 @@ export class DataGridToolbarDemo {
         type: 'default',
         tooltip: '刷新数据'
       },
-      
+
       export: {
         text: '导出',
         icon: 'download',
@@ -380,20 +380,20 @@ export class DataGridToolbarDemo {
         formats: ['excel', 'csv', 'pdf'],
         includeHeaders: true
       },
-      
+
       search: {
         visible: true,
         placeholder: '搜索数据...',
         clearable: true,
         debounce: 300
       },
-      
+
       filter: {
         visible: true,
         showReset: true,
         autoApply: true
       },
-      
+
       settings: {
         visible: true,
         icon: 'setting',
@@ -406,7 +406,7 @@ export class DataGridToolbarDemo {
           fullscreen: true
         }
       },
-      
+
       info: {
         visible: true,
         position: 'right',
@@ -417,7 +417,7 @@ export class DataGridToolbarDemo {
       }
     }
   }
-  
+
   /**
    * 演示简约风格的工具栏配置
    * 最精简的功能配置，适用于空间受限的场景
@@ -428,12 +428,12 @@ export class DataGridToolbarDemo {
       position: 'top',
       align: 'left',
       size: 'small',
-      
+
       // 最基础的功能
       add: true,
       refresh: true,
       search: true,
-      
+
       info: {
         visible: true,
         position: 'right',
@@ -442,7 +442,7 @@ export class DataGridToolbarDemo {
       }
     }
   }
-  
+
   /**
    * 演示企业级工具栏配置
    * 包含完整的权限控制、审计日志等企业功能
@@ -453,7 +453,7 @@ export class DataGridToolbarDemo {
       position: 'top',
       align: 'space-between',
       size: 'medium',
-      
+
       add: {
         text: '新增',
         icon: 'plus',
@@ -462,7 +462,7 @@ export class DataGridToolbarDemo {
         permission: 'data:create',
         modal: true
       },
-      
+
       refresh: {
         text: '刷新',
         icon: 'reload',
@@ -471,7 +471,7 @@ export class DataGridToolbarDemo {
         auto: true,
         interval: 120
       },
-      
+
       export: {
         text: '导出',
         icon: 'download',
@@ -481,7 +481,7 @@ export class DataGridToolbarDemo {
         formats: ['excel', 'csv'],
         includeHeaders: true
       },
-      
+
       search: {
         visible: true,
         placeholder: '输入关键词搜索...',
@@ -489,7 +489,7 @@ export class DataGridToolbarDemo {
         debounce: 500,
         fuzzySearch: true
       },
-      
+
       filter: {
         visible: true,
         showReset: true,
@@ -497,7 +497,7 @@ export class DataGridToolbarDemo {
         filterMode: 'advanced',
         saveFilters: true
       },
-      
+
       batchActions: {
         visible: true,
         showCount: true,
@@ -525,7 +525,7 @@ export class DataGridToolbarDemo {
           }
         ]
       },
-      
+
       settings: {
         visible: true,
         icon: 'setting',
@@ -541,7 +541,7 @@ export class DataGridToolbarDemo {
           fullscreen: true
         }
       },
-      
+
       custom: [
         {
           key: 'audit-trail',
@@ -564,7 +564,7 @@ export class DataGridToolbarDemo {
           action: 'checkDataQuality'
         }
       ],
-      
+
       info: {
         visible: true,
         position: 'left',
@@ -583,82 +583,82 @@ export class DataGridToolbarDemo {
  * 工具栏事件处理示例
  */
 export class ToolbarEventHandlers {
-  
+
   // 基础操作事件
   static handleAdd = (event: any) => {
     console.log('添加操作', event)
     // 实现添加逻辑
   }
-  
+
   static handleRefresh = (event: any) => {
     console.log('刷新操作', event)
     // 实现刷新逻辑
   }
-  
+
   static handleExport = (event: any) => {
     console.log('导出操作', event)
     // 实现导出逻辑
   }
-  
+
   // 搜索和筛选事件
   static handleSearch = (keyword: string) => {
     console.log('搜索操作', keyword)
     // 实现搜索逻辑
   }
-  
+
   static handleFilter = (filters: Record<string, any>) => {
     console.log('筛选操作', filters)
     // 实现筛选逻辑
   }
-  
+
   static handleQuickFilter = (filterKey: string, filterValue: any) => {
     console.log('快速筛选', filterKey, filterValue)
     // 实现快速筛选逻辑
   }
-  
+
   // 批量操作事件
   static handleBatchEnable = (selectedRows: any[]) => {
     console.log('批量启用', selectedRows)
     // 实现批量启用逻辑
   }
-  
+
   static handleBatchDisable = (selectedRows: any[]) => {
     console.log('批量禁用', selectedRows)
     // 实现批量禁用逻辑
   }
-  
+
   static handleBatchDelete = (selectedRows: any[]) => {
     console.log('批量删除', selectedRows)
     // 实现批量删除逻辑
   }
-  
+
   // 设置变化事件
   static handleColumnVisibilityChange = (columnKey: string, visible: boolean) => {
     console.log('列可见性变化', columnKey, visible)
     // 实现列可见性变化逻辑
   }
-  
+
   static handleDensityChange = (density: 'compact' | 'middle' | 'comfortable') => {
     console.log('表格密度变化', density)
     // 实现密度变化逻辑
   }
-  
+
   static handleFullscreenToggle = (isFullscreen: boolean) => {
     console.log('全屏切换', isFullscreen)
     // 实现全屏切换逻辑
   }
-  
+
   // 自定义事件
   static handleDepartmentFilter = (department: string) => {
     console.log('部门筛选', department)
     // 实现部门筛选逻辑
   }
-  
+
   static handleStatusFilter = (status: string) => {
     console.log('状态筛选', status)
     // 实现状态筛选逻辑
   }
-  
+
   static handleAdvancedOperations = () => {
     console.log('高级操作')
     // 实现高级操作逻辑

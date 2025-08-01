@@ -12,7 +12,7 @@ export const basicToolbarConfig: DataGridToolbarConfig = {
   position: 'top',
   align: 'space-between',
   size: 'medium',
-  
+
   // 基础功能按钮
   add: {
     text: '新增',
@@ -20,14 +20,14 @@ export const basicToolbarConfig: DataGridToolbarConfig = {
     type: 'primary',
     tooltip: '添加新记录'
   },
-  
+
   refresh: {
     text: '刷新',
     icon: 'reload',
     type: 'default',
     tooltip: '刷新数据'
   },
-  
+
   export: {
     text: '导出',
     icon: 'download',
@@ -36,7 +36,7 @@ export const basicToolbarConfig: DataGridToolbarConfig = {
     formats: ['excel', 'csv'],
     includeHeaders: true
   },
-  
+
   // 搜索功能
   search: {
     visible: true,
@@ -45,7 +45,7 @@ export const basicToolbarConfig: DataGridToolbarConfig = {
     clearable: true,
     debounce: 300
   },
-  
+
   // 筛选功能
   filter: {
     visible: true,
@@ -53,7 +53,7 @@ export const basicToolbarConfig: DataGridToolbarConfig = {
     showReset: true,
     autoApply: true
   },
-  
+
   // 表格设置
   settings: {
     visible: true,
@@ -66,7 +66,7 @@ export const basicToolbarConfig: DataGridToolbarConfig = {
       pageSize: true
     }
   },
-  
+
   // 信息展示
   info: {
     visible: true,
@@ -86,7 +86,7 @@ export const advancedToolbarConfig: DataGridToolbarConfig = {
   position: 'top',
   align: 'space-between',
   size: 'medium',
-  
+
   // 添加按钮配置
   add: {
     text: '新增用户',
@@ -95,7 +95,7 @@ export const advancedToolbarConfig: DataGridToolbarConfig = {
     tooltip: '添加新用户',
     modal: true
   },
-  
+
   // 刷新按钮配置
   refresh: {
     text: '刷新',
@@ -105,7 +105,7 @@ export const advancedToolbarConfig: DataGridToolbarConfig = {
     auto: true,
     interval: 30
   },
-  
+
   // 导出按钮配置
   export: {
     text: '导出',
@@ -117,7 +117,7 @@ export const advancedToolbarConfig: DataGridToolbarConfig = {
     includeHeaders: true,
     selectedOnly: false
   },
-  
+
   // 高级搜索配置
   search: {
     visible: true,
@@ -130,7 +130,7 @@ export const advancedToolbarConfig: DataGridToolbarConfig = {
     searchFields: ['name', 'email', 'department'],
     fuzzySearch: true
   },
-  
+
   // 高级筛选配置
   filter: {
     visible: true,
@@ -146,7 +146,7 @@ export const advancedToolbarConfig: DataGridToolbarConfig = {
       { key: 'role', label: '管理员', value: 'admin', icon: 'crown' }
     ]
   },
-  
+
   // 批量操作配置
   batchActions: {
     visible: true,
@@ -192,7 +192,7 @@ export const advancedToolbarConfig: DataGridToolbarConfig = {
       }
     ]
   },
-  
+
   // 表格设置配置
   settings: {
     visible: true,
@@ -210,7 +210,7 @@ export const advancedToolbarConfig: DataGridToolbarConfig = {
       fullscreen: true
     }
   },
-  
+
   // 信息展示配置
   info: {
     visible: true,
@@ -222,7 +222,7 @@ export const advancedToolbarConfig: DataGridToolbarConfig = {
     selectedText: '已选择 {selected} 个',
     filteredText: '筛选后 {filtered} 个'
   },
-  
+
   // 自定义工具栏项目
   custom: [
     // 部门选择器
@@ -244,7 +244,7 @@ export const advancedToolbarConfig: DataGridToolbarConfig = {
       },
       onChange: 'handleDepartmentFilter'
     },
-    
+
     // 状态快速切换
     {
       key: 'status-toggle',
@@ -261,7 +261,7 @@ export const advancedToolbarConfig: DataGridToolbarConfig = {
         { key: 'disabled', text: '已禁用', action: 'handleStatusFilter' }
       ]
     },
-    
+
     // 高级操作按钮
     {
       key: 'advanced',
@@ -274,7 +274,7 @@ export const advancedToolbarConfig: DataGridToolbarConfig = {
       tooltip: '更多操作选项',
       action: 'handleAdvancedActions'
     },
-    
+
     // 自定义组件示例
     {
       key: 'custom-widget',
@@ -288,7 +288,7 @@ export const advancedToolbarConfig: DataGridToolbarConfig = {
       }
     }
   ],
-  
+
   // 工具栏样式配置
   style: {
     backgroundColor: '#fafafa',
@@ -296,7 +296,7 @@ export const advancedToolbarConfig: DataGridToolbarConfig = {
     padding: '8px 16px',
     borderRadius: '6px 6px 0 0'
   },
-  
+
   // 响应式配置
   responsive: {
     breakpoints: {
@@ -319,11 +319,11 @@ export const simpleToolbarConfig: DataGridToolbarConfig = {
   position: 'top',
   align: 'center',
   size: 'small',
-  
+
   add: true,
   refresh: true,
   search: true,
-  
+
   settings: {
     visible: true,
     features: {
@@ -331,7 +331,7 @@ export const simpleToolbarConfig: DataGridToolbarConfig = {
       density: true
     }
   },
-  
+
   info: {
     visible: true,
     position: 'center',
@@ -347,13 +347,13 @@ export const readonlyToolbarConfig: DataGridToolbarConfig = {
   position: 'top',
   align: 'space-between',
   size: 'medium',
-  
+
   // 只保留查看相关功能
   refresh: true,
   export: true,
   search: true,
   filter: true,
-  
+
   settings: {
     visible: true,
     features: {
@@ -364,7 +364,7 @@ export const readonlyToolbarConfig: DataGridToolbarConfig = {
       fullscreen: true
     }
   },
-  
+
   info: {
     visible: true,
     position: 'right',
@@ -379,11 +379,11 @@ export const readonlyToolbarConfig: DataGridToolbarConfig = {
 export const sampleDataGridComponent: Partial<DataGridComponent> = {
   id: 'user-grid',
   type: ComponentType.DATA_GRID,
-  
+
   // 基础配置
   dataLevel: 'table',
   datamember: 'users',
-  
+
   // 列配置
   columns: [
     {
@@ -399,7 +399,7 @@ export const sampleDataGridComponent: Partial<DataGridComponent> = {
     } as any,
     {
       id: 'email-col',
-      name: 'email-col', 
+      name: 'email-col',
       version: '1.0.0',
       type: ComponentType.TEXT_COLUMN,
       dataKey: 'email',
@@ -411,7 +411,7 @@ export const sampleDataGridComponent: Partial<DataGridComponent> = {
     {
       id: 'status-col',
       name: 'status-col',
-      version: '1.0.0', 
+      version: '1.0.0',
       type: ComponentType.VALUE_COLUMN,
       dataKey: 'status',
       title: '状态',
@@ -449,26 +449,26 @@ export const sampleDataGridComponent: Partial<DataGridComponent> = {
       ]
     } as any
   ],
-  
+
   // 工具栏配置
   toolbar: advancedToolbarConfig,
-  
+
   // 分页配置
   pagination: true,
   pageSize: 20,
   showSizeChanger: true,
-  
+
   // 行选择配置
   rowSelection: {
     type: 'multiple',
     showSelectAll: true
   },
-  
+
   // 表格样式配置
   size: 'middle',
   bordered: true,
   sticky: true,
-  
+
   // 事件处理
   onAdd: 'handleAdd',
   onEdit: 'handleEdit',

@@ -9,9 +9,11 @@ DataGrid 组件的工具栏功能提供了丰富的用户交互能力，包括�
 ### 1. 基础工具按钮
 
 #### 添加按钮 (add)
+
 - **功能**: 创建新记录
 - **配置选项**: 文本、图标、按钮类型、权限控制、模态框支持
 - **示例**:
+
 ```typescript
 add: {
   text: '新增用户',
@@ -24,9 +26,11 @@ add: {
 ```
 
 #### 刷新按钮 (refresh)
+
 - **功能**: 重新加载数据
 - **配置选项**: 自动刷新、刷新间隔、加载状态
 - **示例**:
+
 ```typescript
 refresh: {
   text: '刷新',
@@ -38,10 +42,12 @@ refresh: {
 ```
 
 #### 导出按钮 (export)
+
 - **功能**: 导出表格数据
 - **支持格式**: Excel、CSV、PDF、JSON
 - **配置选项**: 文件名、包含表头、仅导出选中行
 - **示例**:
+
 ```typescript
 export: {
   text: '导出',
@@ -55,6 +61,7 @@ export: {
 ### 2. 搜索功能 (search)
 
 #### 基础搜索
+
 ```typescript
 search: {
   visible: true,
@@ -65,6 +72,7 @@ search: {
 ```
 
 #### 高级搜索
+
 ```typescript
 search: {
   visible: true,
@@ -79,6 +87,7 @@ search: {
 ### 3. 筛选功能 (filter)
 
 #### 基础筛选
+
 ```typescript
 filter: {
   visible: true,
@@ -89,6 +98,7 @@ filter: {
 ```
 
 #### 快速筛选
+
 ```typescript
 filter: {
   visible: true,
@@ -168,6 +178,7 @@ info: {
 ### 7. 自定义工具栏项目 (custom)
 
 #### 按钮类型
+
 ```typescript
 {
   key: 'custom-action',
@@ -180,6 +191,7 @@ info: {
 ```
 
 #### 下拉菜单类型
+
 ```typescript
 {
   key: 'status-menu',
@@ -194,6 +206,7 @@ info: {
 ```
 
 #### 输入框类型
+
 ```typescript
 {
   key: 'quick-search',
@@ -208,6 +221,7 @@ info: {
 ```
 
 #### 选择器类型
+
 ```typescript
 {
   key: 'department',
@@ -225,6 +239,7 @@ info: {
 ```
 
 #### 自定义组件类型
+
 ```typescript
 {
   key: 'stats-widget',
@@ -240,6 +255,7 @@ info: {
 ## 🎨 样式配置
 
 ### 工具栏整体样式
+
 ```typescript
 style: {
   backgroundColor: '#fafafa',
@@ -251,6 +267,7 @@ style: {
 ```
 
 ### 位置和对齐
+
 ```typescript
 {
   position: 'top',              // 'top' | 'bottom' | 'both'
@@ -278,6 +295,7 @@ responsive: {
 ## 🔗 事件处理
 
 ### 工具栏相关事件
+
 - `onToolbarAction`: 工具栏操作事件
 - `onBatchAction`: 批量操作事件  
 - `onSettingsChange`: 设置变化事件
@@ -290,6 +308,7 @@ responsive: {
 - `onFullscreenToggle`: 全屏切换事件
 
 ### 事件参数说明
+
 ```typescript
 // 工具栏操作事件
 interface ToolbarActionEvent {
@@ -316,6 +335,7 @@ interface SettingsChangeEvent {
 ## 📦 使用示例
 
 ### 基础用法
+
 ```typescript
 const basicToolbar: DataGridToolbarConfig = {
   visible: true,
@@ -329,6 +349,7 @@ const basicToolbar: DataGridToolbarConfig = {
 ```
 
 ### 高级用法
+
 ```typescript
 const advancedToolbar: DataGridToolbarConfig = {
   visible: true,
@@ -376,26 +397,31 @@ const advancedToolbar: DataGridToolbarConfig = {
 ## 🚀 最佳实践
 
 ### 1. 功能组织
+
 - 将相关功能分组放置
 - 常用功能放在显眼位置
 - 保持工具栏简洁，避免功能过载
 
 ### 2. 响应式设计
+
 - 在小屏幕上适当隐藏或折叠功能
 - 使用图标节省空间
 - 提供触摸友好的交互
 
 ### 3. 用户体验
+
 - 提供清晰的图标和文本标签
 - 使用提示文本帮助用户理解功能
 - 对危险操作提供确认对话框
 
 ### 4. 性能优化
+
 - 使用防抖处理搜索输入
 - 延迟加载复杂的自定义组件
 - 避免在工具栏中放置重型组件
 
 ### 5. 权限控制
+
 - 根据用户权限显示/隐藏相应功能
 - 提供细粒度的权限控制
 - 优雅地处理权限不足的情况
@@ -403,6 +429,7 @@ const advancedToolbar: DataGridToolbarConfig = {
 ## 🔧 扩展开发
 
 ### 自定义工具栏组件
+
 ```typescript
 // 创建自定义统计组件
 export const UserStatsWidget: React.FC<{
@@ -430,6 +457,7 @@ export const UserStatsWidget: React.FC<{
 ```
 
 ### 自定义工具栏样式
+
 ```scss
 .datagrid-toolbar {
   &.custom-theme {

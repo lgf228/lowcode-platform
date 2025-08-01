@@ -3,10 +3,10 @@
  * 展示新增的工具栏功能特性
  */
 
-import { 
-  DataGridToolbarConfig, 
-  DataGridComponent, 
-  ComponentType 
+import {
+  DataGridToolbarConfig,
+  DataGridComponent,
+  ComponentType
 } from '../../../src/core/types/Component'
 
 console.log('🚀 DataGrid 工具栏功能演示开始...\n')
@@ -18,36 +18,36 @@ const basicToolbar: DataGridToolbarConfig = {
   position: 'top',
   align: 'space-between',
   size: 'medium',
-  
+
   add: {
     text: '新增',
     icon: 'plus',
     type: 'primary',
     tooltip: '添加新记录'
   },
-  
+
   refresh: {
-    text: '刷新', 
+    text: '刷新',
     icon: 'reload',
     type: 'default',
     auto: true,
     interval: 30
   },
-  
+
   export: {
     text: '导出',
     icon: 'download',
     formats: ['excel', 'csv'],
     includeHeaders: true
   },
-  
+
   search: {
     visible: true,
     placeholder: '请输入搜索关键词',
     clearable: true,
     debounce: 300
   },
-  
+
   info: {
     visible: true,
     position: 'right',
@@ -65,7 +65,7 @@ const advancedToolbar: DataGridToolbarConfig = {
   visible: true,
   position: 'top',
   align: 'space-between',
-  
+
   add: {
     text: '新增用户',
     icon: 'user-add',
@@ -73,7 +73,7 @@ const advancedToolbar: DataGridToolbarConfig = {
     modal: true,
     permission: 'user:create'
   },
-  
+
   batchActions: {
     visible: true,
     showCount: true,
@@ -99,7 +99,7 @@ const advancedToolbar: DataGridToolbarConfig = {
       }
     ]
   },
-  
+
   filter: {
     visible: true,
     quickFilters: [
@@ -107,7 +107,7 @@ const advancedToolbar: DataGridToolbarConfig = {
       { key: 'status', label: '禁用用户', value: 'disabled', icon: 'stop' }
     ]
   },
-  
+
   custom: [
     {
       key: 'department',
@@ -123,7 +123,7 @@ const advancedToolbar: DataGridToolbarConfig = {
       onChange: 'handleDepartmentFilter'
     }
   ],
-  
+
   responsive: {
     breakpoints: {
       xs: { visible: true, collapsed: true },
@@ -143,20 +143,20 @@ const sampleDataGrid: Partial<DataGridComponent> = {
   type: ComponentType.DATA_GRID,
   dataLevel: 'table',
   datamember: 'users',
-  
+
   // 工具栏配置
   toolbar: advancedToolbar,
-  
+
   // 分页配置
   pagination: true,
   pageSize: 20,
-  
+
   // 行选择配置
   rowSelection: {
     type: 'multiple',
     showSelectAll: true
   },
-  
+
   // 事件处理
   onAdd: 'handleAdd',
   onRefresh: 'handleRefresh',

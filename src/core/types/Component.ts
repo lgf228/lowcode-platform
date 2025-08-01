@@ -457,7 +457,7 @@ export interface DataGridToolbarConfig {
   position?: 'top' | 'bottom' | 'both' // 工具栏位置
   align?: 'left' | 'center' | 'right' | 'space-between' // 工具栏对齐方式
   size?: 'small' | 'medium' | 'large' // 工具栏大小
-  
+
   // 内置功能按钮
   add?: boolean | {
     text?: string // 按钮文本
@@ -469,7 +469,7 @@ export interface DataGridToolbarConfig {
     modal?: boolean // 是否在模态框中打开
     permission?: string // 权限控制
   } // 添加按钮配置
-  
+
   refresh?: boolean | {
     text?: string
     icon?: string
@@ -480,7 +480,7 @@ export interface DataGridToolbarConfig {
     auto?: boolean // 是否自动刷新
     interval?: number // 自动刷新间隔（秒）
   } // 刷新按钮配置
-  
+
   export?: boolean | {
     text?: string
     icon?: string
@@ -494,7 +494,7 @@ export interface DataGridToolbarConfig {
     selectedOnly?: boolean // 是否只导出选中行
     permission?: string // 权限控制
   } // 导出按钮配置
-  
+
   // 搜索和筛选功能
   search?: boolean | {
     visible?: boolean // 是否显示搜索框
@@ -508,7 +508,7 @@ export interface DataGridToolbarConfig {
     caseSensitive?: boolean // 是否区分大小写
     fuzzySearch?: boolean // 是否模糊搜索
   } // 搜索配置
-  
+
   filter?: boolean | {
     visible?: boolean // 是否显示筛选器
     position?: 'toolbar' | 'column-header' | 'both' // 筛选器位置
@@ -524,7 +524,7 @@ export interface DataGridToolbarConfig {
       icon?: string // 图标
     }> // 快速筛选按钮
   } // 筛选配置
-  
+
   // 批量操作功能
   batchActions?: {
     visible?: boolean // 是否显示批量操作
@@ -549,7 +549,7 @@ export interface DataGridToolbarConfig {
       permission?: string // 权限控制
     }>
   } // 批量操作配置
-  
+
   // 表格设置功能
   settings?: boolean | {
     visible?: boolean // 是否显示设置按钮
@@ -567,7 +567,7 @@ export interface DataGridToolbarConfig {
       fullscreen?: boolean // 全屏设置
     }
   } // 表格设置配置
-  
+
   // 信息展示区域
   info?: {
     visible?: boolean // 是否显示信息区域
@@ -580,14 +580,14 @@ export interface DataGridToolbarConfig {
     filteredText?: string // 筛选数文本模板
     customInfo?: string // 自定义信息组件ID
   } // 信息展示配置
-  
+
   // 自定义工具栏项目
   custom?: Array<{
     key: string // 工具项键
     type: 'button' | 'dropdown' | 'input' | 'select' | 'component' // 工具项类型
     position?: 'left' | 'center' | 'right' // 位置
     order?: number // 排序优先级
-    
+
     // 按钮类型配置
     text?: string // 按钮文本
     icon?: string // 图标
@@ -596,7 +596,7 @@ export interface DataGridToolbarConfig {
     disabled?: boolean | string // 是否禁用
     loading?: boolean | string // 是否加载中
     tooltip?: string // 提示文本
-    
+
     // 下拉菜单配置
     dropdownItems?: Array<{
       key: string // 菜单项键
@@ -606,7 +606,7 @@ export interface DataGridToolbarConfig {
       divider?: boolean // 是否显示分割线
       action: string // 操作事件处理器ID
     }>
-    
+
     // 输入框配置
     inputProps?: {
       placeholder?: string // 占位符
@@ -614,7 +614,7 @@ export interface DataGridToolbarConfig {
       maxLength?: number // 最大长度
       width?: number | string // 宽度
     }
-    
+
     // 选择器配置
     selectProps?: {
       options?: Array<{ label: string; value: any }> // 选项列表
@@ -623,20 +623,20 @@ export interface DataGridToolbarConfig {
       multiple?: boolean // 是否多选
       width?: number | string // 宽度
     }
-    
+
     // 自定义组件配置
     componentId?: string // 自定义组件ID
     componentProps?: Record<string, any> // 组件属性
-    
+
     // 事件处理
     action?: string // 操作事件处理器ID
     onChange?: string // 值变化事件处理器ID
-    
+
     // 权限和显示控制
     permission?: string // 权限控制
     visible?: boolean | string // 是否可见
   }>
-  
+
   // 工具栏样式配置
   style?: {
     backgroundColor?: string // 背景色
@@ -647,7 +647,7 @@ export interface DataGridToolbarConfig {
     boxShadow?: string // 阴影
     minHeight?: number | string // 最小高度
   }
-  
+
   // 工具栏响应式配置
   responsive?: {
     breakpoints?: {
@@ -903,7 +903,7 @@ export interface DataGridComponent extends Container, DataBinding {
   onDelete?: string // 删除事件处理器ID
   onRefresh?: string // 刷新事件处理器ID
   onExport?: string // 导出事件处理器ID
-  
+
   // 工具栏事件处理（公开配置）
   onToolbarAction?: string // 工具栏操作事件处理器ID
   onBatchAction?: string // 批量操作事件处理器ID
@@ -930,7 +930,7 @@ export interface DataGridComponent extends Container, DataBinding {
     readonly expandedRows?: readonly (string | number)[] // 展开的行
     readonly hoveredRow?: string | number // 悬停的行
     readonly editingCell?: { row: string | number; column: string } // 正在编辑的单元格
-    
+
     // 工具栏状态
     readonly toolbarState?: {
       readonly collapsed?: boolean // 工具栏是否折叠

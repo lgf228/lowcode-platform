@@ -21,6 +21,8 @@
     "clean": "npx tsx tools/scripts/cleanup.ts",
     "clean:legacy": "npx tsx tools/scripts/cleanup.ts --legacy",
     "clean:all": "npx tsx tools/scripts/cleanup.ts --all",
+    "clean:empty": "node tools/scripts/cleanup-empty-files.cjs",
+    "clean:empty:preview": "node tools/scripts/cleanup-empty-files.cjs --dry-run",
     "demo": "npx tsx tools/testing/demos/demo.ts",
     "demo:toolbar": "npx tsx tools/testing/demos/toolbar-demo-test.ts",
     "demo:smart-update": "npx tsx tools/testing/demos/smart-update-test.ts",
