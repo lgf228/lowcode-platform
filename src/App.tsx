@@ -2,6 +2,7 @@ import React from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import DynamicForm from './components/dynamic/DynamicForm'
 import DynamicTable from './components/dynamic/DynamicTable'
+import { ComponentType, type FormField } from './core/types'
 
 // 简单的页面组件
 const HomePage = () => (
@@ -31,33 +32,57 @@ const FormPage = () => {
     console.log('表单取消')
   }
 
-  const formFields = [
+  const formFields: FormField[] = [
     {
-      field: 'name',
+      id: 'field-1',
+      name: 'name-field',
+      version: '1.0',
+      col: 12,
+      colSpan: 1,
+      rowSpan: 1,
+      order: 1,
+      fieldName: 'name',
       label: '姓名',
-      type: 'text' as const,
-      required: true,
+      type: ComponentType.INPUT,
       placeholder: '请输入姓名',
     },
     {
-      field: 'email',
+      id: 'field-2',
+      name: 'email-field',
+      version: '1.0',
+      col: 12,
+      colSpan: 1,
+      rowSpan: 1,
+      order: 2,
+      fieldName: 'email',
       label: '邮箱',
-      type: 'email' as const,
-      required: true,
+      type: ComponentType.INPUT,
       placeholder: '请输入邮箱地址',
     },
     {
-      field: 'age',
+      id: 'field-3',
+      name: 'age-field',
+      version: '1.0',
+      col: 12,
+      colSpan: 1,
+      rowSpan: 1,
+      order: 3,
+      fieldName: 'age',
       label: '年龄',
-      type: 'number' as const,
-      required: false,
+      type: ComponentType.INPUT,
       placeholder: '请输入年龄',
     },
     {
-      field: 'description',
+      id: 'field-4',
+      name: 'description-field',
+      version: '1.0',
+      col: 12,
+      colSpan: 1,
+      rowSpan: 1,
+      order: 4,
+      fieldName: 'description',
       label: '描述',
-      type: 'textarea' as const,
-      required: false,
+      type: ComponentType.TEXTAREA,
       placeholder: '请输入描述信息',
     },
   ]
