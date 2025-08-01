@@ -447,6 +447,221 @@ export interface OptionDataSource {
   }
 }
 
+/**
+ * 数据网格工具栏配置接口 - 独立的工具栏配置类型
+ * 提供给DataGridComponent使用，也可以独立使用
+ */
+export interface DataGridToolbarConfig {
+  // 工具栏显示配置
+  visible?: boolean // 是否显示工具栏
+  position?: 'top' | 'bottom' | 'both' // 工具栏位置
+  align?: 'left' | 'center' | 'right' | 'space-between' // 工具栏对齐方式
+  size?: 'small' | 'medium' | 'large' // 工具栏大小
+  
+  // 内置功能按钮
+  add?: boolean | {
+    text?: string // 按钮文本
+    icon?: string // 图标
+    type?: 'primary' | 'default' | 'dashed' // 按钮类型
+    size?: 'small' | 'medium' | 'large' // 按钮大小
+    disabled?: boolean | string // 是否禁用（可以是表达式）
+    tooltip?: string // 提示文本
+    modal?: boolean // 是否在模态框中打开
+    permission?: string // 权限控制
+  } // 添加按钮配置
+  
+  refresh?: boolean | {
+    text?: string
+    icon?: string
+    type?: 'default' | 'primary' | 'ghost'
+    size?: 'small' | 'medium' | 'large'
+    disabled?: boolean | string
+    tooltip?: string
+    auto?: boolean // 是否自动刷新
+    interval?: number // 自动刷新间隔（秒）
+  } // 刷新按钮配置
+  
+  export?: boolean | {
+    text?: string
+    icon?: string
+    type?: 'default' | 'primary' | 'ghost'
+    size?: 'small' | 'medium' | 'large'
+    disabled?: boolean | string
+    tooltip?: string
+    formats?: ('excel' | 'csv' | 'pdf' | 'json')[] // 支持的导出格式
+    fileName?: string // 默认文件名
+    includeHeaders?: boolean // 是否包含表头
+    selectedOnly?: boolean // 是否只导出选中行
+    permission?: string // 权限控制
+  } // 导出按钮配置
+  
+  // 搜索和筛选功能
+  search?: boolean | {
+    visible?: boolean // 是否显示搜索框
+    placeholder?: string // 搜索占位符
+    position?: 'toolbar' | 'table-header' | 'both' // 搜索框位置
+    size?: 'small' | 'medium' | 'large' // 搜索框大小
+    debounce?: number // 防抖延迟（毫秒）
+    clearable?: boolean // 是否可清空
+    enterSearch?: boolean // 是否回车触发搜索
+    searchFields?: string[] // 搜索字段范围
+    caseSensitive?: boolean // 是否区分大小写
+    fuzzySearch?: boolean // 是否模糊搜索
+  } // 搜索配置
+  
+  filter?: boolean | {
+    visible?: boolean // 是否显示筛选器
+    position?: 'toolbar' | 'column-header' | 'both' // 筛选器位置
+    showReset?: boolean // 是否显示重置按钮
+    showApply?: boolean // 是否显示应用按钮
+    autoApply?: boolean // 是否自动应用筛选
+    filterMode?: 'simple' | 'advanced' // 筛选模式
+    saveFilters?: boolean // 是否保存筛选条件
+    quickFilters?: Array<{
+      key: string // 筛选键
+      label: string // 筛选标签
+      value: any // 筛选值
+      icon?: string // 图标
+    }> // 快速筛选按钮
+  } // 筛选配置
+  
+  // 批量操作功能
+  batchActions?: {
+    visible?: boolean // 是否显示批量操作
+    position?: 'toolbar' | 'selection-info' // 批量操作位置
+    showCount?: boolean // 是否显示选中数量
+    countText?: string // 数量显示文本模板
+    actions?: Array<{
+      key: string // 操作键
+      text: string // 操作文本
+      icon?: string // 图标
+      type?: 'primary' | 'default' | 'danger' | 'warning' // 按钮类型
+      size?: 'small' | 'medium' | 'large' // 按钮大小
+      disabled?: boolean | string // 是否禁用
+      tooltip?: string // 提示文本
+      confirm?: {
+        title?: string // 确认标题
+        content?: string // 确认内容
+        okText?: string // 确认按钮文本
+        cancelText?: string // 取消按钮文本
+      } // 确认配置
+      action: string // 操作事件处理器ID
+      permission?: string // 权限控制
+    }>
+  } // 批量操作配置
+  
+  // 表格设置功能
+  settings?: boolean | {
+    visible?: boolean // 是否显示设置按钮
+    icon?: string // 设置图标
+    tooltip?: string // 提示文本
+    position?: 'toolbar' | 'dropdown' // 设置按钮位置
+    features?: {
+      columnVisibility?: boolean // 列显示/隐藏设置
+      columnOrder?: boolean // 列排序设置
+      columnWidth?: boolean // 列宽设置
+      pageSize?: boolean // 页面大小设置
+      density?: boolean // 表格密度设置
+      export?: boolean // 导出设置
+      print?: boolean // 打印设置
+      fullscreen?: boolean // 全屏设置
+    }
+  } // 表格设置配置
+  
+  // 信息展示区域
+  info?: {
+    visible?: boolean // 是否显示信息区域
+    position?: 'left' | 'center' | 'right' // 信息区域位置
+    showTotal?: boolean // 是否显示总数
+    showSelected?: boolean // 是否显示选中数
+    showFiltered?: boolean // 是否显示筛选后数量
+    totalText?: string // 总数文本模板
+    selectedText?: string // 选中数文本模板
+    filteredText?: string // 筛选数文本模板
+    customInfo?: string // 自定义信息组件ID
+  } // 信息展示配置
+  
+  // 自定义工具栏项目
+  custom?: Array<{
+    key: string // 工具项键
+    type: 'button' | 'dropdown' | 'input' | 'select' | 'component' // 工具项类型
+    position?: 'left' | 'center' | 'right' // 位置
+    order?: number // 排序优先级
+    
+    // 按钮类型配置
+    text?: string // 按钮文本
+    icon?: string // 图标
+    buttonType?: 'primary' | 'default' | 'danger' | 'warning' | 'ghost' | 'link' // 按钮样式
+    size?: 'small' | 'medium' | 'large' // 大小
+    disabled?: boolean | string // 是否禁用
+    loading?: boolean | string // 是否加载中
+    tooltip?: string // 提示文本
+    
+    // 下拉菜单配置
+    dropdownItems?: Array<{
+      key: string // 菜单项键
+      text: string // 菜单项文本
+      icon?: string // 图标
+      disabled?: boolean | string // 是否禁用
+      divider?: boolean // 是否显示分割线
+      action: string // 操作事件处理器ID
+    }>
+    
+    // 输入框配置
+    inputProps?: {
+      placeholder?: string // 占位符
+      clearable?: boolean // 是否可清空
+      maxLength?: number // 最大长度
+      width?: number | string // 宽度
+    }
+    
+    // 选择器配置
+    selectProps?: {
+      options?: Array<{ label: string; value: any }> // 选项列表
+      placeholder?: string // 占位符
+      clearable?: boolean // 是否可清空
+      multiple?: boolean // 是否多选
+      width?: number | string // 宽度
+    }
+    
+    // 自定义组件配置
+    componentId?: string // 自定义组件ID
+    componentProps?: Record<string, any> // 组件属性
+    
+    // 事件处理
+    action?: string // 操作事件处理器ID
+    onChange?: string // 值变化事件处理器ID
+    
+    // 权限和显示控制
+    permission?: string // 权限控制
+    visible?: boolean | string // 是否可见
+  }>
+  
+  // 工具栏样式配置
+  style?: {
+    backgroundColor?: string // 背景色
+    borderColor?: string // 边框颜色
+    padding?: string | number // 内边距
+    margin?: string | number // 外边距
+    borderRadius?: number | string // 圆角
+    boxShadow?: string // 阴影
+    minHeight?: number | string // 最小高度
+  }
+  
+  // 工具栏响应式配置
+  responsive?: {
+    breakpoints?: {
+      xs?: { visible?: boolean; collapsed?: boolean } // 超小屏幕
+      sm?: { visible?: boolean; collapsed?: boolean } // 小屏幕
+      md?: { visible?: boolean; collapsed?: boolean } // 中等屏幕
+      lg?: { visible?: boolean; collapsed?: boolean } // 大屏幕
+      xl?: { visible?: boolean; collapsed?: boolean } // 超大屏幕
+    }
+    collapseThreshold?: number // 折叠阈值（像素）
+    collapsedItems?: ('search' | 'filter' | 'export' | 'settings' | 'custom')[] // 优先折叠的项目
+  }
+}
+
 // ===========================
 // 3. 表单配置类型
 // ===========================
@@ -674,19 +889,7 @@ export interface DataGridComponent extends Container, DataBinding {
   }
 
   // 工具栏配置（公开配置）
-  toolbar?: {
-    add?: boolean // 是否显示添加按钮
-    refresh?: boolean // 是否显示刷新按钮
-    export?: boolean // 是否显示导出按钮
-    search?: boolean // 是否显示搜索框
-    filter?: boolean // 是否显示筛选器
-    custom?: Array<{
-      text: string // 按钮文本
-      action: string // 操作事件处理器ID
-      icon?: string // 图标
-      type?: 'primary' | 'default' | 'danger' // 按钮类型
-    }>
-  }
+  toolbar?: DataGridToolbarConfig
 
   // 数据网格事件处理（公开配置）
   onRowClick?: string // 行点击事件处理器ID
@@ -700,6 +903,18 @@ export interface DataGridComponent extends Container, DataBinding {
   onDelete?: string // 删除事件处理器ID
   onRefresh?: string // 刷新事件处理器ID
   onExport?: string // 导出事件处理器ID
+  
+  // 工具栏事件处理（公开配置）
+  onToolbarAction?: string // 工具栏操作事件处理器ID
+  onBatchAction?: string // 批量操作事件处理器ID
+  onSettingsChange?: string // 设置变化事件处理器ID
+  onFilterReset?: string // 筛选重置事件处理器ID
+  onSearchClear?: string // 搜索清空事件处理器ID
+  onQuickFilter?: string // 快速筛选事件处理器ID
+  onColumnVisibilityChange?: string // 列显示/隐藏变化事件处理器ID
+  onColumnOrderChange?: string // 列顺序变化事件处理器ID
+  onDensityChange?: string // 表格密度变化事件处理器ID
+  onFullscreenToggle?: string // 全屏切换事件处理器ID
 
   // 数据网格状态配置（公开配置）
   emptyState?: {
@@ -715,6 +930,36 @@ export interface DataGridComponent extends Container, DataBinding {
     readonly expandedRows?: readonly (string | number)[] // 展开的行
     readonly hoveredRow?: string | number // 悬停的行
     readonly editingCell?: { row: string | number; column: string } // 正在编辑的单元格
+    
+    // 工具栏状态
+    readonly toolbarState?: {
+      readonly collapsed?: boolean // 工具栏是否折叠
+      readonly activeFilters?: Record<string, any> // 活跃的筛选条件
+      readonly quickFilters?: readonly string[] // 活跃的快速筛选
+      readonly searchHistory?: readonly string[] // 搜索历史
+      readonly columnSettings?: {
+        readonly visibility?: Record<string, boolean> // 列可见性设置
+        readonly order?: readonly string[] // 列顺序设置
+        readonly widths?: Record<string, number> // 列宽设置
+      }
+      readonly density?: 'compact' | 'middle' | 'comfortable' // 表格密度
+      readonly isFullscreen?: boolean // 是否全屏状态
+      readonly autoRefresh?: {
+        readonly enabled?: boolean // 是否启用自动刷新
+        readonly interval?: number // 刷新间隔
+        readonly lastRefresh?: Date // 最后刷新时间
+      }
+      readonly exportState?: {
+        readonly inProgress?: boolean // 是否正在导出
+        readonly format?: string // 导出格式
+        readonly progress?: number // 导出进度
+      }
+      readonly batchSelection?: {
+        readonly count?: number // 批量选中数量
+        readonly allSelected?: boolean // 是否全选
+        readonly partialSelected?: boolean // 是否部分选中
+      }
+    }
   }
 }
 

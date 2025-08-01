@@ -3,9 +3,9 @@
  * 简单展示如何使用优化功能
  */
 
-import { optimizeComponent } from './src/core/optimization'
-import { ComponentType } from './src/core/types/Component'
-import type { InputComponent } from './src/core/types/Component'
+import { optimizeComponent } from '../../../src/core/optimization'
+import { ComponentType } from '../../../src/core/types/Component'
+import type { InputComponent } from '../../../src/core/types/Component'
 
 // 创建一个简单的测试组件
 function createSampleComponent(): InputComponent {

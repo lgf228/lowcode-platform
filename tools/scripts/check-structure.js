@@ -12,41 +12,153 @@ const path = require('path')
 const expectedStructure = {
     'docs/': {
         'api/': {},
-        'guides/': {},
-        'architecture/': {},
-        'analysis/': {},
+        'guides/': {
+            'datagrid-toolbar-guide.md': 'file',
+            'optimization-guide.md': 'file',
+            'optimization-roadmap.md': 'file'
+        },
+        'architecture/': {
+            'architecture-analysis.md': 'file',
+            'architecture-private-properties.md': 'file'
+        },
+        'analysis/': {
+            'component-privatization-analysis.md': 'file',
+            'DATAGRID_TOOLBAR_COMPLETE.md': 'file',
+            'dependency-analysis.md': 'file',
+            'detailed-technical-analysis.md': 'file',
+            'OPTIMIZATION_COMPLETE.md': 'file',
+            'SMART_UPDATE_COMPLETE.md': 'file'
+        },
         'assets/': {},
-        'README.md': 'file'
+        'README.md': 'file',
+        'API.md': 'file',
+        'ARCHITECTURE.md': 'file',
+        'COMPONENTS.md': 'file',
+        'EXAMPLES.md': 'file'
     },
     'src/': {
         'components/': {
-            'ui/': {},
-            'layout/': {},
-            'dynamic/': {}
+            'ui/': {
+                'Button.tsx': 'file',
+                'Input.tsx': 'file',
+                'Select.tsx': 'file',
+                'index.ts': 'file'
+            },
+            'layout/': {
+                'Container.tsx': 'file',
+                'Page.tsx': 'file',
+                'Region.tsx': 'file',
+                'index.ts': 'file',
+                'layout.scss': 'file'
+            },
+            'dynamic/': {
+                'DynamicForm.tsx': 'file',
+                'DynamicTable.tsx': 'file',
+                'index.ts': 'file'
+            }
         },
         'core/': {
-            'types/': {},
-            'managers/': {},
-            'utils/': {},
-            'optimization/': {}
+            'types/': {
+                'Base.ts': 'file',
+                'Component.ts': 'file',
+                'Component_old.ts': 'file',
+                'DataModel.ts': 'file',
+                'Dataset.ts': 'file',
+                'Project.ts': 'file',
+                'index.ts': 'file'
+            },
+            'managers/': {
+                'DynamicDataManager.ts': 'file',
+                'index.ts': 'file'
+            },
+            'utils/': {
+                'DataModelUtils.ts': 'file'
+            },
+            'optimization/': {
+                'ComponentOptimizer.ts': 'file',
+                'PerformanceMonitor.ts': 'file',
+                'StateManager.ts': 'file',
+                'utils.ts': 'file',
+                'integration-test.ts': 'file',
+                'index.ts': 'file'
+            }
         },
-        'config/': {},
-        'styles/': {}
+        'config/': {
+            'index.ts': 'file',
+            'routing.ts': 'file',
+            'theme.ts': 'file'
+        },
+        'styles/': {
+            'components.scss': 'file',
+            'layout.scss': 'file',
+            'main.scss': 'file',
+            'regions.scss': 'file',
+            'variables.scss': 'file'
+        },
+        'App.tsx': 'file',
+        'main.tsx': 'file'
     },
     'tools/': {
-        'scripts/': {},
+        'scripts/': {
+            'check-structure.js': 'file',
+            'check-structure.cjs': 'file',
+            'cleanup.ts': 'file'
+        },
         'testing/': {
-            'demos/': {}
+            'demos/': {
+                'datagrid-toolbar-demo.ts': 'file',
+                'demo.ts': 'file',
+                'smart-update-test.ts': 'file',
+                'toolbar-demo-test.ts': 'file'
+            }
         },
         'dev/': {}
     },
-    'tests/': {},
-    'examples/': {},
-    'public/': {},
+    'tests/': {
+        'components/': {},
+        'managers/': {},
+        'utils/': {},
+        'setup.ts': 'file'
+    },
+    'examples/': {
+        'basic-crud/': {
+            'datasets.json': 'file',
+            'pages.json': 'file',
+            'project.json': 'file'
+        },
+        'erp-system/': {
+            'datasets.json': 'file',
+            'pages.json': 'file',
+            'project.json': 'file'
+        },
+        'DataGridToolbarExamples.ts': 'file',
+        'SimpleUserDataModel.ts': 'file',
+        'UserManagementDataModel.ts': 'file'
+    },
+    'public/': {
+        'config/': {
+            'components.json': 'file',
+            'datasets.json': 'file',
+            'project.json': 'file'
+        },
+        'index.html': 'file'
+    },
     'package.json': 'file',
+    'package-lock.json': 'file',
     'README.md': 'file',
     'tsconfig.json': 'file',
-    'vite.config.ts': 'file'
+    'tsconfig.node.json': 'file',
+    'vite.config.ts': 'file',
+    'eslint.config.js': 'file',
+    'jest.config.json': 'file',
+    'index.html': 'file',
+    'demo.ts': 'file',
+    'smart-update-test.ts': 'file',
+    'OPTIMIZATION_COMPLETE.md': 'file',
+    'PROJECT_COMPLETION_REPORT.md': 'file',
+    'PROJECT_STRUCTURE_ANALYSIS.md': 'file',
+    'SMART_UPDATE_COMPLETE.md': 'file',
+    'STRUCTURE_REORGANIZATION_COMPLETE.md': 'file'
 }
 
 // 检查目录结构
