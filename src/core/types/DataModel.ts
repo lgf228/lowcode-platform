@@ -249,6 +249,7 @@ export interface DataView {
     // 视图设置
     rowFilter?: string         // 行筛选器
     sort?: string              // 排序表达式
+    //
     rowStateFilter?: 'CurrentRows' | 'Added' | 'Deleted' | 'ModifiedCurrent' | 'ModifiedOriginal' | 'New' | 'OriginalRows' | 'Unchanged' // 行状态筛选器
 
     // 视图选项
